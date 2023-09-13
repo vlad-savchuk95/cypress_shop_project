@@ -1,9 +1,11 @@
-name: cypress_shop_project
+name: Cypress tests
 on: push
 jobs:
   cypress-run:
     name: Cypress run
     runs-on: ubuntu-22.04
+    env:
+      CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -15,14 +17,10 @@ jobs:
           record: true
 
       - name: Uploading artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         if: always()
         with:
-            name: cypress-execution-report
-            path: cypress/reports/html
-            retention-days: 30  
-
-        env:
-          # pass the Cypress Cloud record key as an environment variable
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-     
+          name: cypress-execution-report
+          path: cypress/reports/html
+          retention-days: 30
+ 
