@@ -1,7 +1,7 @@
 import commonLocators from "../../fixtures/page_object/common.locators";
 import mainMenu from "../../fixtures/page_object/main.menu";
 import header from "../../fixtures/page_object/header";
-import shoppingCartPage from "../../fixtures/page_object/shopping.cart.page";
+import shoppingCartPage from "../../fixtures/page_object/shopping.card.page";
 
 let productTitle;
 
