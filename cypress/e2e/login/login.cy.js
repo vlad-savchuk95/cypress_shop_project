@@ -19,8 +19,8 @@ describe("Login", () => {
     cy.contains(logoutPageText.logoutMessage).should("be.visible");
   });
 
-  it("Should not log in with invalid credentials", () => {
-    loginPage.login("wrongEmail.com", "12345678");
+  it("Should not log in without '@' sign in the email", () => {
+    loginPage.login("someEmail.com", "12345678");
     cy.contains(loginPageText.errorMessage).should("be.visible");
   });
 });
