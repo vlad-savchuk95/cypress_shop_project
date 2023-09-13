@@ -1,12 +1,9 @@
 name: cypress_shop_project
-
 on: push
-
 jobs:
-  ui-regression:
-    name: Cypress UI Regression Tests
+  cypress-run:
+    name: Cypress run
     runs-on: ubuntu-22.04
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -14,28 +11,27 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Run Cypress Tests
+      - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
           command: npm run ui-regression
           record: true
 
-      - name: Upload Cypress Test Artifacts
+      - name: Uploading artifact
         uses: actions/upload-artifact@v2
+        if: always()
         with:
           name: cypress-execution-report
           path: cypress/reports/html
-          retention-days: 30
+          retention-days: 30  
 
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2
         env:
+          # pass the Cypress Cloud record key as an environment variable
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-         
-
-          
-
-
-
-
-          
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_USERNAME: Dima S
+          SLACK_TITLE: Regression Test
+          SLACK_MESSAGE: "Slack notification: test result: ${{ job.status }}"
+          SLACK_COLOR: ${{ job.status }}
