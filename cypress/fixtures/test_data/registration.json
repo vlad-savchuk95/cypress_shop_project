@@ -1,0 +1,5 @@
+{ 
+    "emailAlreadyRegistered": "Warning: E-Mail Address is already registered!",
+    "invalidPasswordlength": "Password must be between 4 and 20 characters!",
+    "privacyPolicyError": " Warning: You must agree to the Privacy Policy!"
+}  
