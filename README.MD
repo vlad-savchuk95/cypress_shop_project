@@ -23,7 +23,6 @@ To run tests, follow these steps:
 npx cypress open
 
 or silent mode - npx cypress run 
-or paralell silent mode - npm run test:parallel:chrome ; npm run test:parallel:electron
 
 **Reporting**
 
