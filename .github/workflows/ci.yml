@@ -10,17 +10,32 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Cypress run
+      - name: Cypress run with Chrome
         uses: cypress-io/github-action@v6
         with:
-          command: npm run ui-regression
+          command: npm run ui-regression:chrome
           record: true
 
-      - name: Uploading artifact
+      - name: Uploading artifact (Chrome)
         uses: actions/upload-artifact@v2
         if: always()
         with:
-          name: cypress-execution-report
+          name: cypress-execution-report-chrome
           path: cypress/reports/html
           retention-days: 30
+
+      - name: Cypress run with Electron
+        uses: cypress-io/github-action@v6
+        with:
+          command: npm run ui-regression:electron
+          record: true
+
+      - name: Uploading artifact (Electron)
+        uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: cypress-execution-report-electron
+          path: cypress/reports/html
+          retention-days: 30
+
  
