@@ -12,9 +12,9 @@ jobs:
           - chrome
           - electron
         test_suite:
-          - login
-          - registration
-          - shopping_cart
+          - Login
+          - Registration
+          - ShoppingCart
 
     steps:
       - name: Checkout
