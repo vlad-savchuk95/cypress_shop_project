@@ -20,7 +20,7 @@ describe("Login", () => {
   });
 
   it("Should not log in with invalid credentials", () => {
-    loginPage.login("wrongeEmail.com", "12345678");
+    loginPage.login("wrongEmail.com", "12345678");
     cy.contains(loginPageText.errorMessage).should("be.visible");
   });
 });
