@@ -1,9 +1,21 @@
 name: cypress_shop_project
+
 on: push
+
 jobs:
-  cypress-run:
-    name: Cypress run
-    runs-on: ubuntu-22.04
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        browser:
+          - chrome
+          - electron
+        test_suite:
+          - Login
+          - Registration
+          - ShoppingCart
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -11,27 +23,12 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          command: npm run ui-regression
-          record: true
+      - name: Run Cypress Tests
+        run: npm run test:${{ matrix.test_suite }}:${{ matrix.browser }}
 
-      - name: Uploading artifact
-        uses: actions/upload-artifact@v2
+      - name: Cypress Test Report
         if: always()
+        uses: actions/upload-artifact@v3
         with:
-          name: cypress-execution-report
-          path: cypress/reports/html
-          retention-days: 30  
-
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
-        env:
-          # pass the Cypress Cloud record key as an environment variable
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_USERNAME: Dima S
-          SLACK_TITLE: Regression Test
-          SLACK_MESSAGE: "Slack notification: test result: ${{ job.status }}"
-          SLACK_COLOR: ${{ job.status }}
+          name: Mochawesome HTML Report
+          path: mochawesome-report
