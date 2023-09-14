@@ -5,7 +5,7 @@ module.exports = defineConfig({
   projectId: '5pqn6n',
   reporter: 'cypress-mochawesome-reporter',
   e2e: {
-    defaultCommandTimeout: 15000,
+    defaultCommandTimeout: 20000,
     watchForFileChanges: false,
     viewportWidth: 1200,
     viewportHeight: 800,

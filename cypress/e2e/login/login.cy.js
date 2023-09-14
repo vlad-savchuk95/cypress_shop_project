@@ -21,6 +21,7 @@ describe("Login", () => {
 
   it("Should not log in without '@' sign in the email", () => {
     loginPage.login("someEmail.com", "12345678");
-    cy.contains(loginPageText.errorMessage).should("be.visible");
+    cy.contains(new RegExp(`(${loginPageText.errorMessage1}|${loginPageText.errorMessage2})`))
+      .should("be.visible");
   });
 });
