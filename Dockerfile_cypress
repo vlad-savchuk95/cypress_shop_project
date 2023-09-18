@@ -1,0 +1,17 @@
+# Use an official Cypress image as the base image
+FROM cypress/included:latest
+
+# Create a directory for your Cypress project
+WORKDIR /cypress_shop_project
+
+# Copy package.json, package-lock.json, and cypress.config.js to the container
+COPY package.json package-lock.json cypress.config.js ./
+
+# Install Cypress dependencies
+RUN npm install
+
+# Copy the Cypress source code to the container
+COPY cypress ./cypress
+
+# Set the entry point for Cypress
+CMD ["npm", "run", "cypress:run"]
