@@ -22,6 +22,18 @@ describe("Registration", () => {
     cy.contains(accountPageText.accountCreated).should("be.visible");
   });
 
+  it("Should register 50 users", () => {
+    registrationPage.firstNameInput.type(userData.firstName);
+    registrationPage.lastNameInput.type(userData.lastName);
+    registrationPage.emailInput.type(userData.email);
+    registrationPage.telephoneInput.type(userData.phoneNumber);
+    registrationPage.passwordInput.type(userData.password);
+    registrationPage.passwordConfirmInput.type(userData.password);
+    registrationPage.privacyPolicyCheckBox.click();
+    registrationPage.continueButton.click();
+    cy.contains(accountPageText.accountCreated).should("be.visible");
+  });
+
   it("Should not be able to register with an existing email address", () => {
     registrationPage.firstNameInput.type(userData.firstName);
     registrationPage.lastNameInput.type(userData.lastName);

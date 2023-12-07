@@ -17,6 +17,7 @@ describe("Login", () => {
     header.myAccountButton.click();
     header.logoutButton.click();
     cy.contains(logoutPageText.logoutMessage).should("be.visible");
+    
   });
 
   it("Should not log in without '@' sign in the email", () => {

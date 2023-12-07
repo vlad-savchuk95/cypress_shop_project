@@ -11,7 +11,7 @@ module.exports = defineConfig({
     viewportHeight: 800,
     baseUrl: "https://naveenautomationlabs.com/opencart/",
     env: {
-      userEmail : "traverse88@gmail.com", 
+      userEmail : "traverse8@gmail.com", 
       userPassword: "password123",
     },
     reporter: "cypress-mochawesome-reporter",
