@@ -1,8 +1,6 @@
 const userData = require('../../fixtures/test_data/logins.json');
 import loginPage from '../../fixtures/page_object/login.page';
-const accountPageText = require("../../fixtures/test_data/account.json");
 
-// Test to register all users
 describe('Register Users', () => {
   userData.users.forEach((user, index) => {
   it(`Should register User ${index + 1}`, () => {
